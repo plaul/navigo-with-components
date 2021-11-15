@@ -1,8 +1,6 @@
 const URL = "http://localhost:3000/books"
 
 function bookRepository() {
-  let books = []
-
   const getBooks = async () => fetch(URL).then(res => res.json())
 
   const findBook = async (id) =>  fetch(URL+"/"+id).then(res => res.json())
