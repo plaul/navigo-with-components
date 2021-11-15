@@ -22,11 +22,11 @@ function bookRepository() {
 
   const findBook = async (id) => {
     if (books.length === 0) {
-      return await fetch(URL + "/" + id).then(res => handleHttpError(res, "Could not find a book with the ID: " + id))
+      return fetch(URL + "/" + id).then(res => handleHttpError(res, "Could not find a book with the ID: " + id))
     } else {
-      const book = books.find(book => book.id == id)
-      if (!book) throw new Error("Could not find a book with the ID: " + id)
-      return book
+      const foundBook = books.find(book => book.id == id)
+      if (!foundBook) throw new Error("Could not find a book with the ID: " + id)
+      return foundBook
     }
   }
 
