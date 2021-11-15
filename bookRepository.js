@@ -12,7 +12,7 @@ function bookRepository() {
   let lastCacheUpdate = 0
 
   const getBooks = async () => {
-    const now = new Date().getTime();
+    const now = new Date().getTime()
     if (books.length === 0 || (now - lastCacheUpdate) > MAX_CACHE_TIME) {
       books = await fetch(URL).then(res => handleHttpError(res, `Error '${res.status} `))
       lastCacheUpdate = new Date().getTime()
@@ -21,14 +21,14 @@ function bookRepository() {
   }
 
   const findBook = async (id) => {
-    let book
     if (books.length === 0) {
-      book = await fetch(URL + "/" + id).then(res => handleHttpError(res, "Could not find a book with the ID: " + id))
+      const book = await fetch(URL + "/" + id).then(res => handleHttpError(res, "Could not find a book with the ID: " + id))
+      return book;
     } else {
-      book = books.find(book => book.id == id)
+      const book = books.find(book => book.id == id)
       if (!book) throw new Error("Could not find a book with the ID: " + id)
+      return book
     }
-    return book
   }
 
   const deleteBook = async (id) => {
